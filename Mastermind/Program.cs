@@ -8,6 +8,7 @@ class Mastermind
         string secretCode = "";
 
         // Generate a random 4-digit secret code with digits from 1 to 6
+        //test
         for (int i = 0; i < 4; i++)
         {
             secretCode += random.Next(1, 7).ToString();
@@ -23,7 +24,7 @@ class Mastermind
             Console.Write($"Attempt {attempt}/10: Enter your guess: ");
             string guess = Console.ReadLine();
 
-            if (guess.Length != 4 || !IsValidGuess(guess))
+            if (!IsValidGuess(guess))
             {
                 Console.WriteLine("Invalid input. Please enter a 4-digit number using digits 1-6.");
                 attempt--;
@@ -31,7 +32,7 @@ class Mastermind
             }
 
             string feedback = GetFeedback(secretCode, guess);
-            Console.WriteLine("Hint: " + feedback);
+            Console.WriteLine($"Hint: {feedback}");
 
             if (feedback == "++++")
             {
@@ -46,12 +47,16 @@ class Mastermind
         }
         else
         {
-            Console.WriteLine("You've run out of attempts. The secret code was: " + secretCode);
+            Console.WriteLine($"You've run out of attempts. The secret code was: {secretCode}");
         }
     }
 
     static bool IsValidGuess(string guess)
     {
+        if (guess.Length != 4)
+        {
+            return false;
+        }
         foreach (char c in guess)
         {
             if (c < '1' || c > '6')
