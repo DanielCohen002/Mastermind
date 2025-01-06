@@ -8,7 +8,6 @@ class Mastermind
         string secretCode = "";
 
         // Generate a random 4-digit secret code with digits from 1 to 6
-        //test
         for (int i = 0; i < 4; i++)
         {
             secretCode += random.Next(1, 7).ToString();
